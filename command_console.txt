@@ -1,0 +1,110 @@
+Microsoft Windows [Version 10.0.19043.1889]
+(c) Корпорация Майкрософт (Microsoft Corporation). Все права защищены.
+
+C:\WINDOWS\system32>cd C:\Program Files\MySQL\MySQL Server 8.0\bin
+
+C:\Program Files\MySQL\MySQL Server 8.0\bin>mysql
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 39
+Server version: 8.0.30 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2022, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> CREATE DATABASE example;
+Query OK, 1 row affected (0.04 sec)
+
+mysql> USE example;
+Database changed
+mysql> CREATE TABLE users(id INT UNSIGNED NOT NULL, name VARCHAR(100));
+Query OK, 0 rows affected (0.14 sec)
+
+mysql> INSERT users VALUES (1, 'user1');
+Query OK, 1 row affected (0.02 sec)
+
+mysql> INSERT users VALUES (2, 'user2');
+Query OK, 1 row affected (0.13 sec)
+
+mysql> INSERT users VALUES (3, 'user3');
+Query OK, 1 row affected (0.04 sec)
+
+mysql> SELECT * FROM users;
++----+-------+
+| id | name  |
++----+-------+
+|  1 | user1 |
+|  2 | user2 |
+|  3 | user3 |
++----+-------+
+3 rows in set (0.00 sec)
+
+mysql> exit
+Bye
+
+C:\Program Files\MySQL\MySQL Server 8.0\bin>mysqldump -u root -p example > D:\GB_MySQL\example.sql
+
+C:\Program Files\MySQL\MySQL Server 8.0\bin>mysql
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 41
+Server version: 8.0.30 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2022, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> CREATE DATABASE sample;
+Query OK, 1 row affected (0.07 sec)
+
+mysql> exit
+Bye
+
+C:\Program Files\MySQL\MySQL Server 8.0\bin>mysql -u root -p sample < D:\GB_MySQL\example.sql
+
+C:\Program Files\MySQL\MySQL Server 8.0\bin>mysql
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 43
+Server version: 8.0.30 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2022, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> USE sample;
+Database changed
+mysql> SHOW TABLES;
++------------------+
+| Tables_in_sample |
++------------------+
+| users            |
++------------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT * FROM users;
++----+-------+
+| id | name  |
++----+-------+
+|  1 | user1 |
+|  2 | user2 |
+|  3 | user3 |
++----+-------+
+3 rows in set (0.00 sec)
+
+mysql> exit
+Bye
+
+C:\Program Files\MySQL\MySQL Server 8.0\bin>mysqldump -u root -p --where="true ORDER BY help_keyword_id ASC LIMIT 100" mysql help_keyword > D:\GB_MySQL\help_keyword_100.sql
+
+C:\Program Files\MySQL\MySQL Server 8.0\bin>
